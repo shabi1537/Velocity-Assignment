@@ -29,6 +29,7 @@ export const Signup = () => {
 
   return (
     <div>
+        <div className='form-heading'>Create Your Account</div>
         <form className='form-container' onSubmit={handleSubmit}>
                 <label htmlFor='name'>Name :
                 <input className='input' id='name' type='text' name='name' value={formData.name} required onChange={handleChange} />

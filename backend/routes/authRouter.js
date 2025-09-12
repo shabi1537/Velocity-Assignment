@@ -6,6 +6,7 @@ const {login, signup, logout, getDetails} = require('../controllers/authControll
 authRouter.post('/login', login)
 authRouter.post('/signup', signup)
 authRouter.get('/mydetails', getDetails)
+authRouter.post('/logout', logout)
 
 
 module.exports = authRouter

@@ -126,3 +126,13 @@ button[type='submit']:hover {
   margin-top: 70px;
   font-size: 25px;
 }
+
+.form-heading{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 900;
+  margin-top: 30px;
+  margin-bottom: 1px;
+}
