@@ -27,6 +27,7 @@ export const Login = () => {
 
         try {
             const res = await axios.post('/auth/login', formData)
+            console.log(res.data.message)
             setUser(res.data.user)
             navigate('/mydetails')
         } catch (err) {

@@ -8,6 +8,7 @@ import { Home } from './pages/Home.jsx'
 import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { Mydetails } from './pages/Mydetails.jsx'
+import { Errorpage } from './pages/Errorpage.jsx'
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,13 @@ const router = createBrowserRouter([
         path: 'mydetails',
         element: <Mydetails/>
       },
+      
     ]
-  }
+  },
+  {
+    path: '*',
+    element: <Errorpage/>
+  },
 ])
 
 createRoot(document.getElementById('root')).render(
