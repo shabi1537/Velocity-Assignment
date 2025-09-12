@@ -1,0 +1,128 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html {
+  background-color: rgba(244, 240, 240, 0.594);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+  background-color: white;
+  padding: 5px;
+}
+
+.link {
+  margin: 15px;
+  text-decoration: none;
+  color: white;
+  border-radius: 10px;
+  background-color: rgb(14, 16, 28);
+  padding: 11px 14px;
+  transition: background-color 0.3s ease;
+}
+
+.link:hover {
+  background-color: rgb(40, 44, 63);
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 30px auto;
+  padding: 20px 20px;
+  max-width: 500px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.form-container > label {
+  display: flex;
+  flex-direction: column;
+  font-size: 15px;
+  color: #333;
+  width: 100%;
+}
+
+.input {
+  height: 30px;
+  padding: 6px 10px;
+  margin-top: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  transition: border-color 0.2s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgb(14, 16, 28);
+}
+
+button[type='submit'] {
+  background-color: rgb(14, 16, 28);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  width: 460px;
+}
+
+button[type='submit']:hover {
+  background-color: rgb(40, 44, 63);
+  
+}
+
+.submit-button{
+  display: flex;
+  justify-content: center;
+}
+
+.login-container {
+  padding: 14px 10px;
+  margin: 5px;
+}
+
+.home-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 150px;
+  font-weight: 900;
+  font-size: 40px;
+}
+
+/* Admin checkbox styling */
+#isAdmin {
+  margin-top: 10px;
+  margin-left: 10px;
+  transform: scale(1.2);
+}
+
+.home-page{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 80px;
+  font-size: 40px;
+}
+
+.userdetail{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 70px;
+  font-size: 25px;
+}

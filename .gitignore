@@ -1,0 +1,22 @@
+# Node modules (both frontend and backend)
+node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+.env.local
+
+# Build outputs (React frontend)
+frontend/build/
+frontend/dist/
+
+# Build outputs (optional for backend)
+backend/dist/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
