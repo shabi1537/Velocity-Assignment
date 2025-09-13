@@ -3,12 +3,14 @@ import React, { useState } from 'react'
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/authContext';
+import { Spinner } from '../components/Spinner';
 
 export const Login = () => {
 
     const [formData, setFormData] = useState({
         email:'', password:''
     })
+    const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
     const {setUser} = useContext(AuthContext)
 
@@ -24,6 +26,7 @@ export const Login = () => {
     const handleSubmit = async (e)=>{
 
         e.preventDefault()
+        setLoading(true)
 
         try {
             const res = await axios.post('/auth/login', formData)
@@ -33,10 +36,15 @@ export const Login = () => {
         } catch (err) {
             console.error(err.response?.data?.message || 'Login failed')
         }
+        finally{
+            setLoading(false)
+        }
     }
 
   return (
     <>
+    {loading ? <Spinner/>:(
+     <div>   
     <div className='form-heading'>Log In</div>
     <div>
         <form className='form-container' onSubmit={handleSubmit}>
@@ -49,7 +57,9 @@ export const Login = () => {
             </label>
             <button type='submit'>Submit</button>
         </form>
-    </div>
+    </div></div>)
+    
+    }
     </>
   )
 }

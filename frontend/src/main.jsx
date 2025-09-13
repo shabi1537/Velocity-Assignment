@@ -9,6 +9,8 @@ import { Login } from './pages/Login.jsx'
 import { Signup } from './pages/Signup.jsx'
 import { Mydetails } from './pages/Mydetails.jsx'
 import { Errorpage } from './pages/Errorpage.jsx'
+import { PrivateRoutes } from './components/PrivateRoutes.jsx'
+import { PublicRoutes } from './components/PublicRoutes.jsx'
 
 const router = createBrowserRouter([
   {
@@ -21,15 +23,15 @@ const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <Login/>
+        element: <PublicRoutes><Login/></PublicRoutes>
       },
       {
         path: 'signup',
-        element: <Signup/>
+        element: <PublicRoutes><Signup/></PublicRoutes>
       },
       {
         path: 'mydetails',
-        element: <Mydetails/>
+        element: <PrivateRoutes><Mydetails/></PrivateRoutes>
       },
       
     ]
