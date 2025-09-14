@@ -24,7 +24,8 @@ export const Navbar = () => {
         {!user ? <NavLink className='link' to='/login'> Log In</NavLink>:
         <NavLink className='link' to='/login' onClick={handleLogout}> Log Out</NavLink>}
         {!user ? <NavLink className='link' to='/signup'> Sign Up</NavLink>: null}
-        {user ? <NavLink className='link' to='/mydetails'> My Details</NavLink> : null}
+        {user?.role ==='guest' ? <NavLink className='link' to='/mydetails'> My Details</NavLink> : null}
+        {user?.role ==='admin' ? <NavLink className='link' to='/mydetails'> Dashboard</NavLink> : null}
     </div>
   )
 }

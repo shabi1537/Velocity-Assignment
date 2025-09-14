@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 
 exports.signup = async (req, res)=> {
     try {
-        const {name, email, password, dob, isAdmin} = req.body
+        const {name, email, password, dob, isAdmin, phone} = req.body
 
         const user = await User.findOne({email})
         if(user) return res.status(400).json({message: 'user already exist'})
@@ -16,7 +16,8 @@ exports.signup = async (req, res)=> {
             email,
             password: hashedPassword,
             dob,
-            role: isAdmin ? 'admin' : 'guest'
+            role: isAdmin ? 'admin' : 'guest',
+            phone
         })
 
         await newUser.save()
@@ -48,7 +49,12 @@ exports.login = async (req, res) =>{
 
         const {password:pwd, ...userWithoutPassword} = user.toObject()
 
-        return res.status(200).json({ message: 'Login successful', user: userWithoutPassword });
+        if(user.role === 'guest')return res.status(200).json({ message: 'Login successful', user: userWithoutPassword });
+
+        const guestUsers = await User.find({ role: 'guest' }).select('-password');
+        if(!guestUsers) return res.status(200).json({message:'user not found', user: userWithoutPassword })
+        
+        return res.status(200).json({message:'user not found', user: userWithoutPassword, guestUsers })    
             
     } 
     catch (err) {
@@ -66,7 +72,15 @@ exports.getDetails = async (req, res) =>{
         const user = await User.findById(decoded.id).select('-password')
         if(!user) return res.status(401).json({message:'user not found'})
 
-        return res.status(200).json({user});    
+
+        if(user.role === 'guest') return res.status(200).json({user});
+        
+        //find all user who are guest
+        const guestUsers = await User.find({ role: 'guest' }).select('-password');
+        if(!guestUsers) return res.status(200).json({message:'user not found', user})
+
+        return res.status(200).json({message:'guest found', user, guestUsers})
+            
     }
     catch (error) {
         return res.status(404).json({message:'invalid token'})
@@ -80,3 +94,16 @@ exports.logout = async(req, res)=>{
     });
     return res.status(200).json({ message:'Logged out successfully'});
 }
+
+exports.deleteGuest = async (req, res)=>{
+    try {
+        const {id} = req.body
+
+        await User.findByIdAndDelete(id)
+        const guestUsers = await User.find({role:'guest'}).select('-password') 
+        return res.status(200).json({message:'guest deleted', guestUsers})
+    } catch (error) {
+        return res.status(500).json({message:'internal error'})
+    }
+}
+

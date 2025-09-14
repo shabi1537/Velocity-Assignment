@@ -12,7 +12,7 @@ export const Login = () => {
     })
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate()
-    const {setUser} = useContext(AuthContext)
+    const {setUser, setGuestUsers} = useContext(AuthContext)
 
     const handleChange = (e)=>{
 
@@ -30,8 +30,16 @@ export const Login = () => {
 
         try {
             const res = await axios.post('/auth/login', formData)
-            console.log(res.data.message)
+            //console.log(res.data.message)
             setUser(res.data.user)
+
+            if(res.data.user.role === 'admin'){
+                console.log(res.data.guestUsers)
+                setGuestUsers(res.data.guestUsers)
+            }
+            else{
+                setGuestUsers([])
+            }
             navigate('/mydetails')
         } catch (err) {
             console.error(err.response?.data?.message || 'Login failed')

@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const Signup = () => {
 
     const [formData, setFormData] = useState({
-        name:'', email:'', password:'', dob:'', isAdmin: false
+        name:'', email:'', password:'', dob:'', isAdmin: false, phone:''
     })
     const navigate = useNavigate()
     const handleChange = (e)=>{
@@ -40,6 +40,9 @@ export const Signup = () => {
 
                 <label htmlFor='password'>Password :
                 <input className='input' id='password' type='password' name='password' value={formData.password} required onChange={handleChange} />
+                </label>
+                <label htmlFor='phone'>Contact Number :
+                <input className='input' id='phone' type='phone' name='phone' value={formData.phone} required onChange={handleChange} />
                 </label>
 
                 <label htmlFor='dob'>DOB :
